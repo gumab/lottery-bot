@@ -37,7 +37,10 @@ def check_winning_win720(authCtrl: auth.AuthController) -> dict:
     return item
 
 def send_message(mode: int, lottery_type: int, response: dict, webhook_url: str):
+    print("메시지 전송시작")
     notify = notification.Notification()
+    print("noti초기화 완료")
+    print(mode, lottery_type, webhook_url)
 
     if mode == 0:
         if lottery_type == 0:
