@@ -49,9 +49,12 @@ class Notification:
         assert type(winning) == dict
         assert type(webhook_url) == str
 
+        print("보내보자")
+
         try: 
             round = winning["round"]
             money = winning["money"]
+            print("1", round, money)
 
             max_label_status_length = max(len(f"{line['label']} {line['status']}") for line in winning["lotto_details"])
 
@@ -103,5 +106,6 @@ class Notification:
             return
 
     def _send_discord_webhook(self, webhook_url: str, message: str) -> None:        
-        payload = { "content": message }
+        print("진짜 보낸거야")
+        payload = { "username":"lotto-bot", "content": message, "text":message }
         requests.post(webhook_url, json=payload)
