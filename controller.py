@@ -17,8 +17,12 @@ def buy_lotto645(authCtrl: auth.AuthController, cnt: int, mode: str):
     return response
 
 def check_winning_lotto645(authCtrl: auth.AuthController) -> dict:
+    print("로또 체크 시작")
     lotto = lotto645.Lotto645()
+    print("로또 초기화 완료")
     item = lotto.check_winning(authCtrl)
+    print("로또 체크 완료")
+    print(item)
     return item
 
 def buy_win720(authCtrl: auth.AuthController, username: str):
@@ -53,9 +57,11 @@ def check():
     password = os.environ.get('PASSWORD')
     slack_webhook_url = os.environ.get('SLACK_WEBHOOK_URL') 
     discord_webhook_url = os.environ.get('DISCORD_WEBHOOK_URL')
+    print("시작")
 
     globalAuthCtrl = auth.AuthController()
     globalAuthCtrl.login(username, password)
+    print("로그인완료")
     
     response = check_winning_lotto645(globalAuthCtrl)
     send_message(0, 0, response=response, webhook_url=discord_webhook_url)
